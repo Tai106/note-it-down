@@ -1,0 +1,22 @@
+{
+  "name": "note-it-down",
+  "version": "1.0.0",
+  "description": "an application called that can be used to write and save notes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tai106/note-it-down.git"
+  },
+  "author": "Taivon Edwards",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tai106/note-it-down/issues"
+  },
+  "homepage": "https://github.com/Tai106/note-it-down#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
