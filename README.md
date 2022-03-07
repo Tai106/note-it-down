@@ -14,10 +14,10 @@ This application was created to dynamically write and save notes. This applicati
 The application will be invoked by using the following command:
 node server.js
 
-#Installation
+# Installation
 Download the application through GitHub 
 
-#Usage
+# Usage
 Open terminal
 Install npm
 Install express
