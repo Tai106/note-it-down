@@ -1,18 +1,17 @@
-const fs = require('fs');
 const express = require('express');
+const fs = require('fs');
 const path = require('path');
-const { parse } = require('path/posix');
-const { Console } = require('console');
+const dbJson = require('./db/db.json')
 
-const app = express();
 const PORT = process.env.PORT || 3001;
+const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
 app.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, '/public/notes.html'));
+    res.sendFile(path.join(__dirname, './public/notes.html'));
 });
 
 app.get('/api/notes', (req, res) => {
@@ -45,7 +44,7 @@ app.delete("/api/notes/:id", function (req, res) {
 
             let noteJson = JSON.stringify(dbJson, null, 2);
             console.log(noteJson);
-            fs.writeFile("./db/db.jsopn", noteJson, function (err) {
+            fs.writeFile("./db/db.json", noteJson, function (err) {
                 if (err) throw err;
                 console.log("Your note has been deleted!");
                 res.json(dbJson);
@@ -55,5 +54,5 @@ app.delete("/api/notes/:id", function (req, res) {
 });
 
 app.listen(PORT, () => {
-    Console.log(`API server now on port ${PORT}!`);
+    console.log(`API server now on port ${PORT}!`);
 });
