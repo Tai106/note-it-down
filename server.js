@@ -1,7 +1,6 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const dbJson = require('./db/db.json')
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -10,16 +9,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
-app.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/notes.html'));
+app.get("/", function (req, res) {
+    res.sendFile(path.join(__dirname, "index.html"));
 });
 
-app.get('/api/notes', (req, res) => {
-    const dataNotes = fs.readFileSync(path.join(__dirname, './db/db.json'), "utf-8");
-    const parseNotes = JSON.parse(dataNotes);
-    res.json(parseNotes);
-});
-
+app.get("/notes", function (req, res) {
+    res.sendFile(path.join(__dirname,  './public/notes.html'));
+  });
+  
 app.post('/api/notes', (req, res) => {
     const dataNotes = fs.readFileSync(path.join(__dirname, './db/db.json'), "utf-8");
     const parseNotes = JSON.parse(dataNotes);
