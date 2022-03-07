@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+var uuidv1 = require('uuidv1')
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -20,6 +21,7 @@ app.get("/notes", function (req, res) {
 app.post('/api/notes', (req, res) => {
     const dataNotes = fs.readFileSync(path.join(__dirname, './db/db.json'), "utf-8");
     const parseNotes = JSON.parse(dataNotes);
+    req.body.id = uuidv1()
     parseNotes.push(req.body);
 
 fs.writeFileSync(path.join(__dirname, './db/db.json'), JSON.stringify(parseNotes), "utf-8");
@@ -31,6 +33,7 @@ app.get ('*', (req, res) => {
 });
 
 app.delete("/api/notes/:id", function (req, res) {
+    console.log(uuidv1())
     console.log("Req.params:", req.params);
     let deletedNote = parseInt(req.params.id);
     console.log(deletedNote);
